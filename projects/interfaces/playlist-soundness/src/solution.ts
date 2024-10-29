@@ -37,7 +37,8 @@ export function unrollPlaylist(items: PlaylistItem[]): UnrolledPlaylist {
 			typeof song.artist === "string" ? [song.artist] : song.artist;
 
 		for (const artist of songArtists) {
-			artists[artist] ??= [];
+			// artists[artist] ??= [];
+			if (!artists[artist]) artists[artist] = [];
 			artists[artist].push(song.name);
 		}
 

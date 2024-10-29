@@ -1,4 +1,41 @@
 // Write your types here! ✨
+type Base = {
+	from: "defendant" | "plaintiff";
+	reason: string;
+};
+
+type StepPost = {
+	step: "post-trial";
+	classification: "acquittal" | "correction" | "new trial";
+};
+
+type StepPre = {
+	step: "pre-trial";
+	classification: "dismiss" | "venue" | "suppress";
+};
+
+type StatusAllowed = {
+	status: "allowed";
+	deliberationHours: number;
+};
+
+type StatusDenied = {
+	status: "denied";
+	deliberationHours: number;
+	annoyedJustice: boolean;
+};
+
+type StatusPending = {
+	status: "pending";
+	estimatedDeliberationHours: number;
+};
+
+type Step = StepPost | StepPre;
+type Status = StatusAllowed | StatusDenied | StatusPending;
+type Motion = Base & Step & Status;
+
+// Base 与 Step（或 Status）先进行 交叉& 计算
+// type Motion = StatusAllowed | StatusDenied | StatusPending;
 
 export const motions: Motion[] = [
 	{

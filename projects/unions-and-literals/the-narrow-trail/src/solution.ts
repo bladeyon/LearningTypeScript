@@ -1,10 +1,11 @@
-export function runCommands() {
+export function runCommands(arr: number[] = []) {
 	let nextSupply: "food" | "water" | undefined;
 	let food = 5;
 	let water = 5;
 
 	for (let time = 1; time <= 7; time += 1) {
-		const randomNumber = Math.floor(Math.random() * 6) + 1;
+		// const randomNumber = Math.floor(Math.random() * 6) + 1;
+		const randomNumber = arr[time];
 		let command: "finish" | "food" | "water" | number;
 
 		switch (randomNumber) {
@@ -20,7 +21,7 @@ export function runCommands() {
 				command = randomNumber;
 				break;
 		}
-
+		let temp = nextSupply;
 		if (typeof command === "number") {
 			switch (nextSupply) {
 				case "food":
@@ -51,6 +52,9 @@ export function runCommands() {
 
 		food -= 1;
 		water -= 1;
+		console.log(
+			`${time}: ${temp}, ${randomNumber} roll, ${food} food, ${water} water `
+		);
 
 		if (food === 0 || water === 0) {
 			return false;
@@ -59,3 +63,6 @@ export function runCommands() {
 
 	return true;
 }
+
+// console.log(runCommands([0, 3, 4, 4, 1, 2]));
+console.log(runCommands([0, 1, 3, 5, 2, 4, 6, 1]));

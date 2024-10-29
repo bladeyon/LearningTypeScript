@@ -1,6 +1,27 @@
 // Write your types here! ✨
 
-export function checkPassport(id: string) {
+interface Allowed {
+	allowed: true;
+}
+interface NotAllowed {
+	allowed: false;
+	reason: string;
+}
+
+declare global {
+	interface Window {
+		passports: {
+			[key: string]: Passport | undefined;
+		};
+	}
+}
+
+interface Passport {
+	name: string;
+	expires: Date;
+}
+
+export function checkPassport(id: string): Allowed | NotAllowed {
 	const passport = window.passports[id];
 
 	if (!passport) {

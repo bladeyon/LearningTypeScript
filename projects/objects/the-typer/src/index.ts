@@ -1,6 +1,97 @@
 // Write your types here! ✨
 
-let current = {
+// interface 写法
+// interface Base {
+// 	name: string;
+// 	proximity: number;
+// 	treasure?: string;
+// }
+
+// interface Path extends Base {
+// 	type: "path";
+// 	through: Place;
+// 	shortcut?: Place;
+// }
+
+// interface Town extends Base {
+// 	type: "town";
+// 	around?: Place;
+// 	through?: Place;
+// }
+
+// interface Clearing extends Base {
+// 	type: "clearing";
+// 	through?: Place;
+// }
+
+// interface StreamBase extends Base {
+// 	type: "stream";
+// }
+
+// interface StreamBegin extends StreamBase {
+// 	area: "begin";
+// 	downstream: Place;
+// }
+// interface StreamEnd extends StreamBase {
+// 	area: "end";
+// 	upstream: Place;
+// }
+// interface StreamMiddle extends StreamBase {
+// 	area: "middle";
+// 	downstream: Place;
+// 	upstream: Place;
+// }
+
+// type Stream = StreamBegin | StreamEnd | StreamMiddle;
+
+// type Place = Path | Stream | Town | Clearing;
+
+// type 写法
+type Base = {
+	name: string;
+	proximity: number;
+	treasure?: string;
+};
+
+type Path = Base & {
+	type: "path";
+	through: Place;
+	shortcut?: Place;
+};
+
+type StreamBase = Base & {
+	type: "stream";
+};
+
+type StreamBegin = StreamBase & {
+	area: "begin";
+	downstream: Place;
+};
+
+type StreamMiddle = StreamBase & {
+	area: "middle";
+	downstream: Place;
+	upstream: Place;
+};
+
+type StreamEnd = StreamBase & {
+	area: "end";
+	upstream: Place;
+};
+
+type Stream = StreamBegin | StreamEnd | StreamMiddle;
+type Town = Base & {
+	type: "town";
+	around?: Place;
+	through?: Place;
+};
+type Clearing = Base & {
+	type: "clearing";
+	through?: Place;
+};
+type Place = Path | Stream | Town | Clearing;
+
+let current: Place | undefined = {
 	name: "Woesong Bridge",
 	proximity: 100,
 	through: {

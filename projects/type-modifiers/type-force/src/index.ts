@@ -23,9 +23,20 @@ const mutationsLibrary = {
 		hero.flying = true;
 		hero.toughness *= 0.9;
 	},
-};
+} as MutationKLib;
 
-function createCharacter(name, mutations) {
+interface Character {
+	flying: boolean;
+	name: string;
+	power: number;
+	toughness: number;
+}
+
+interface MutationKLib {
+	[key: string]: (hero: Character) => void;
+}
+
+function createCharacter(name: string, mutations: Mutation[]): Character {
 	const character = {
 		flying: false,
 		name,
@@ -38,4 +49,17 @@ function createCharacter(name, mutations) {
 	}
 
 	return character;
+}
+type Mutation = keyof typeof mutationsLibrary;
+interface Fighter {
+	name: string;
+	mutations: Mutation[];
+}
+
+export function duel(good: Fighter, bad: Fighter) {
+	const g = createCharacter(good.name, good.mutations);
+	const b = createCharacter(bad.name, bad.mutations);
+	const gs = g.power / b.toughness;
+	const bs = b.power / g.toughness;
+	return gs >= bs ? (["hero", g] as const) : (["villain", b] as const);
 }

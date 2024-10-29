@@ -1,17 +1,22 @@
 // Note: I'm planning on inviting 20 guests in total.
 // Some clowns can only handle a certain number of guests.
-let guestCount: boolean = 20;
-let clownsCount = "zilch!";
+let guestCount = 20;
+let clownsCount = 0;
 
 let krustyAvailability = true;
 let ronaldAvailability = true;
 let pennywiseAvailability = true;
 
-let matchingsDescription: any = "";
-let lastClown;
+let matchingsDescription = "";
+let lastClown = "";
 
 do {
-	clownsCount += 1;
+	if (krustyAvailability || ronaldAvailability || pennywiseAvailability) {
+		clownsCount += 1;
+	} else {
+		console.error(`Oh no! We're out of clowns!`);
+		break;
+	}
 
 	// Krusty says: I had a one-man show on Broadway...
 	// That's who showed up, one man!
@@ -42,16 +47,16 @@ do {
 		continue;
 	}
 
-	throw new Error(`Oh no! We're out of clowns!`);
+	// 	throw new Error(`Oh no! We're out of clowns!`);
 } while (guestCount > 0);
 
 if (clownsCount > 2) {
 	console.log("We've got a lot of clowns coming!");
 }
 
-if (matchingsDescription.length()) {
+if (matchingsDescription.length) {
 	console.log(`There will be ${clownsCount} clowns!\n`);
-	clownsole.log(matchingsDescription);
+	console.log(matchingsDescription);
 	console.log(`The last clown is: ${lastClown.toUpperCase()}!`);
 } else {
 	console.log("Nobody gets a clown. Terrible party. Goodbye.");

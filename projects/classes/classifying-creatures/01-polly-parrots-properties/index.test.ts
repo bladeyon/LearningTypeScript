@@ -42,7 +42,6 @@ describe(Parrot, () => {
 				const parrot = new Parrot("Emerald");
 
 				const actual = parrot.speak();
-
 				expect(actual).toEqual(expected);
 			}
 		);

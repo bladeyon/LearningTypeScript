@@ -1,4 +1,10 @@
 {
 	// Write your configuration options here! ✨
-	"include": ["."]
+	"include": ["."],
+	"exclude": ["*.verify.ts"],
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true
+	}
 }
